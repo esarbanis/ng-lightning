@@ -1,6 +1,6 @@
 {
   "name": "ng-lightning",
-  "version": "0.2.1-0",
+  "version": "0.1.1-0",
   "description": "Native Angular 2 components and directives for Lightning Design System",
   "repository": {
     "type": "git",
@@ -22,7 +22,8 @@
     "demo:build": "npm run build && webpack --config ./demo/webpack.config.js",
     "demo:release": "npm run demo:build && node scripts/gh-pages",
     "prerelease": "npm run build && npm test",
-    "release": "node scripts/release"
+    "release": "node scripts/release",
+    "merge": "node scripts/gh-pr-merge"
   },
   "keywords": [
     "angular",
@@ -80,9 +81,11 @@
     "raw-loader": "^0.5.1",
     "reflect-metadata": "0.1.2",
     "replace": "^0.3.0",
+    "request": "^2.69.0",
     "run-sequence": "^1.1.5",
     "rxjs": "5.0.0-beta.2",
     "semver": "^5.1.0",
+    "shelljs": "^0.6.0",
     "simple-git": "^1.28.0",
     "string-replace-loader": "^1.0.0",
     "systemjs": "^0.19.24",
