@@ -62,9 +62,9 @@ describe('`nglButtonState`', () => {
 @Component({
   template: `
     <button type="button" [nglButtonState]="selected" (nglButtonStateChange)="change($event)">
-      <ngl-icon iconName="add" state="not-selected">Follow</ngl-icon>
-      <ngl-icon iconName="check" state="selected">Following</ngl-icon>
-      <ngl-icon iconName="close" state="selected-focus">Unfollow</ngl-icon>
+      <ngl-state-off iconName="add">Follow</ngl-state-off>
+      <ngl-state-on iconName="check">Following</ngl-state-on>
+      <ngl-state-hover iconName="close">Unfollow</ngl-state-hover>
     </button>
   `,
 })

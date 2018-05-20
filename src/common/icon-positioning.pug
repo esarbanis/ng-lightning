@@ -1,0 +1,7 @@
+mixin icon-positioning()
+  ng-template(*ngIf="iconName && iconPosition === 'left'; then icon")
+  ng-content
+  ng-template(*ngIf="iconName && iconPosition === 'right'; then icon")
+
+  ng-template(#icon)
+    svg([nglIconName]="iconName", [ngClass]="svgClasses")

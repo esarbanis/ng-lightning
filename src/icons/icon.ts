@@ -21,14 +21,10 @@ export class NglIcon implements OnChanges {
   private _containerClass: string[];
 
   constructor(public element: ElementRef, public renderer: Renderer2,
-              @Attribute('state') private state: string,
               @Attribute('button') button: string,
               @Optional() nglButton: NglButton, @Optional() nglButtonIcon: NglButtonIcon) {
 
     this.button = button === null ? !!(nglButton || nglButtonIcon) : toBoolean(button);
-    if (state) {
-      renderer.addClass(element.nativeElement, `slds-text-${state}`);
-    }
     renderer.addClass(element.nativeElement, 'slds-icon_container');
   }
 
@@ -42,7 +38,7 @@ export class NglIcon implements OnChanges {
     const classes = Array.isArray(this.svgClass) ? <string[]>this.svgClass : [this.svgClass || ''];
 
     const prefix = this.button ? 'slds-button__icon' : 'slds-icon';
-    classes.push(this.state ? 'slds-button__icon_stateful' : prefix);
+    classes.push(prefix);
 
     if (this.size) {
       classes.push(`${prefix}_${this.size}`);
@@ -52,7 +48,7 @@ export class NglIcon implements OnChanges {
       classes.push(`slds-icon-text-${this.variant}`);
     }
 
-    if (this.align || this.state) {
+    if (this.align) {
       classes.push(`slds-button__icon_${this.align || 'left'}`);
     }
 
