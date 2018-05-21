@@ -7,13 +7,6 @@
   * `iconPosition?: 'left' | 'right'`: Describes the position of the icon with respect to body. Options include left and right. This value defaults to left.
 
 
-# `[nglButtonIcon]`
-
-### Input
-
-  * `nglButtonIcon?: 'container' | 'border' | 'border-filled' | 'small' | '' = 'border'`: Buttons container.
-
-
 # `[nglButtonState]`
 
 ### Input

@@ -1,0 +1,14 @@
+<div class="slds-text-title--caps slds-m-top--x-large slds-m-bottom--small">Icon</div>
+<button type="button" nglButtonIcon [variant]="iconType" iconName="warning" class="slds-button--icon-x-small">
+</button>
+<button type="button" nglButtonIcon iconName="warning" [size]="size" *ngFor="let size of sizes;">
+</button>
+
+<div class="slds-text-title--caps slds-m-top--x-large slds-m-bottom--small">Stateful</div>
+<button type="button" nglButtonIcon [(nglButtonState)]="selected" iconName="settings">
+</button>
+<button type="button" ngl-button variant="neutral" [(nglButtonState)]="selected">
+  <ngl-state-off iconName="add">Follow</ngl-state-off>
+  <ngl-state-on iconName="check">Following</ngl-state-on>
+  <ngl-state-hover iconName="close">Unfollow</ngl-state-hover>
+</button>

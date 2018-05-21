@@ -1,7 +1,7 @@
 import {TestBed, ComponentFixture} from '@angular/core/testing';
 import {Component} from '@angular/core';
 import {createGenericTestComponent} from '../../test/util/helpers';
-import {NglButtonsModule} from './module';
+import {NglButtonsModule} from '../buttons/module';
 import {NglIconsModule} from '../icons/module';
 
 const createTestComponent = (html?: string, detectChanges?: boolean) =>
