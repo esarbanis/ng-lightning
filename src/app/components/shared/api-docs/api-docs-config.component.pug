@@ -1,0 +1,22 @@
+.api-doc-component((click)='trackSourceClick()', [class.deprecated]='apiDocs.deprecated')
+  h3
+    a.title-fragment([routerlink]='', fragment='{{apiDocs.className}}', ngbdfragment='', title='Anchor link to: {{apiDocs.className}}')
+      img(src='img/link-symbol.svg', alt='Anchor link to: {{apiDocs.className}}')
+    span
+      | {{apiDocs.className}}
+      span.text-muted.font-weight-light(*ngif='apiDocs.typeParameter') <{{apiDocs.typeParameter}}>
+    a.github-link(href='https://github.com/ng-bootstrap/ng-bootstrap/tree/master/{{apiDocs.fileName}}', target='_blank', title='Link to Github: {{apiDocs.className}}')
+      img(src='img/github.svg', alt='Link to Github {{apiDocs.className}}')
+  ngbd-api-docs-badge(type='Configuration', [deprecated]='apiDocs.deprecated', [since]='apiDocs.since')
+  p(*ngif='apiDocs.deprecated') {{ apiDocs.deprecated.description }}
+  p.lead {{apiDocs.description}}
+  ng-template([ngif]='apiDocs.properties && apiDocs.properties.length')
+    section
+      h4 Properties
+      p.description
+        ng-template(ngfor='', let-property='', [ngforof]='apiDocs.properties')
+          code.pr-2 {{ property.name }}
+          | &ngsp;
+      p.mt-3
+        | Documentation available in
+        a([routerlink]='', fragment='{{directiveName}}') {{ directiveName }}

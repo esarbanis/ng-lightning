@@ -1,0 +1,81 @@
+.api-doc-component([class.deprecated]='apiDocs.deprecated')
+  h3.title
+    a([routerlink]='', [fragment]='apiDocs.className', ngbdfragment='', title='Anchor link to: {{apiDocs.className}}')
+      img(src='img/link-symbol.svg', alt='Anchor link to: {{apiDocs.className}}')
+    span
+      | {{apiDocs.className}}
+      span.text-muted.font-weight-light(*ngif='apiDocs.typeParameter') <{{apiDocs.typeParameter}}>
+    a.github-link((click)='trackSourceClick()', href='https://github.com/ng-bootstrap/ng-bootstrap/tree/master/{{apiDocs.fileName}}', target='_blank', title='Link to Github: {{apiDocs.className}}')
+      img(src='img/github.svg', alt='Link to Github {{apiDocs.className}}')
+  ngbd-api-docs-badge([type]='apiDocs.type', [deprecated]='apiDocs.deprecated', [since]='apiDocs.since')
+  p(*ngif='apiDocs.deprecated') {{ apiDocs.deprecated.description }}
+  p.lead
+    | {{apiDocs.description}}
+  section
+    h4
+      | Selector
+      small
+        code.selector {{apiDocs.selector}}
+    h6(*ngif='apiDocs.exportAs')
+      | Exported as
+      small
+        code.export-as {{apiDocs.exportAs}}
+  ng-template([ngif]='apiDocs.inputs.length')
+    section
+      h4 Inputs
+      table.table.table-sm
+        tbody
+          tr(*ngfor='let input of apiDocs.inputs', [class.deprecated]='input.deprecated')
+            td.label-cell
+              code {{input.name}}
+              br
+              span.badge.badge-info(*ngif='input.since') since {{ input.since.version }}
+              | &ngsp;
+              span.badge.badge-secondary(*ngif='input.deprecated') deprecated {{ input.deprecated.version }}
+            td.content-cell
+              p(*ngif='input.deprecated') {{ input.deprecated.description }}
+              p.description {{ input.description }}
+              .meta
+                div
+                  i Type:
+                  code {{ input.type }}
+                div(*ngif='defaultInputValue(input) || hasConfigProperty(input)')
+                  span
+                    i Default value:
+                    code {{ defaultInputValue(input) || '-' }}
+                  | &ngsp;
+                  span(*ngif='hasConfigProperty(input)') — initialized from {{ configServiceName }} service
+  ng-template([ngif]='apiDocs.outputs.length')
+    section
+      h4 Outputs
+      table.table.table-sm
+        tbody
+          tr(*ngfor='let output of apiDocs.outputs', [class.deprecated]='output.deprecated')
+            td.label-cell
+              code {{output.name}}
+              br
+              span.badge.badge-info(*ngif='output.since') since {{ output.since.version }}
+              | &ngsp;
+              span.badge.badge-secondary(*ngif='output.deprecated') deprecated {{ output.deprecated.version }}
+            td.content-cell
+              p(*ngif='output.deprecated') {{ output.deprecated.description }}
+              p.description {{ output.description }}
+  ng-template([ngif]='apiDocs.methods.length && apiDocs.exportAs')
+    section
+      h4 Methods
+      table.table.table-sm
+        tbody
+          tr(*ngfor='let method of apiDocs.methods', [class.deprecated]='method.deprecated')
+            td.label-cell
+              code {{method.name}}
+              br
+              span.badge.badge-info(*ngif='method.since') since {{ method.since.version }}
+              | &ngsp;
+              span.badge.badge-secondary(*ngif='method.deprecated') deprecated {{ method.deprecated.version }}
+            td.content-cell
+              p.signature
+                code {{methodSignature(method)}}
+                | &ngsp;
+                small.text-muted(title='Return type') => {{ method.returnType }}
+              p(*ngif='method.deprecated') {{ method.deprecated.description }}
+              p.description {{ method.description }}

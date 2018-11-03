@@ -6,6 +6,7 @@ import { routes as demoRoutes } from './routes';
 import { NglModule } from 'ng-lightning';
 
 import { ComponentsComponent } from './components';
+import { NglDemoSharedModule } from './shared/shared.module';
 
 
 const routes: Routes = [
@@ -19,6 +20,7 @@ const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
+    NglDemoSharedModule,
     RouterModule.forChild(routes),
     NglModule,
   ],

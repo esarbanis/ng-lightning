@@ -1,0 +1,53 @@
+.api-doc-component([class.deprecated]='apiDocs.deprecated')
+  h3
+    a.title-fragment([routerlink]='', fragment='{{apiDocs.className}}', ngbdfragment='', title='Anchor link to: {{apiDocs.className}}')
+      img(src='img/link-symbol.svg', alt='Anchor link to: {{apiDocs.className}}')
+    span
+      | {{apiDocs.className}}
+      span.text-muted.font-weight-light(*ngif='apiDocs.typeParameter') <{{apiDocs.typeParameter}}>
+    a.github-link((click)='trackSourceClick()', href='https://github.com/ng-bootstrap/ng-bootstrap/tree/master/{{apiDocs.fileName}}', target='_blank', title='Link to Github: {{apiDocs.className}}')
+      img(src='img/github.svg', alt='Link to Github {{apiDocs.className}}')
+  app-demo-api-docs-badge([type]='apiDocs.type', [deprecated]='apiDocs.deprecated', [since]='apiDocs.since')
+  p(*ngif='apiDocs.deprecated') {{ apiDocs.deprecated.description }}
+  p.lead {{apiDocs.description}}
+  ng-template([ngif]='apiDocs.properties && apiDocs.properties.length')
+    section
+      h4 Properties
+      table.table.table-sm
+        tbody
+          tr(*ngfor='let prop of apiDocs.properties', [class.deprecated]='prop.deprecated')
+            td.label-cell
+              code {{prop.name}}
+              br
+              span.badge.badge-info(*ngif='prop.since') since {{ prop.since.version }}
+              | &ngsp;
+              span.badge.badge-secondary(*ngif='prop.deprecated') deprecated {{ prop.deprecated.version }}
+            td.content-cell
+              p(*ngif='prop.deprecated') {{ prop.deprecated.description }}
+              p.description {{ prop.description }}
+              .meta
+                div
+                  i Type:
+                  code {{ prop.type }}
+                div(*ngif='prop.defaultValue')
+                  i Default value:
+                  code {{prop.defaultValue || '-'}}
+  ng-template([ngif]='apiDocs.methods && apiDocs.methods.length')
+    section
+      h4 Methods
+      table.table.table-sm
+        tbody
+          tr(*ngfor='let method of apiDocs.methods', [class.deprecated]='method.deprecated')
+            td.label-cell
+              code {{method.name}}
+              br
+              span.badge.badge-info(*ngif='method.since') since {{ method.since.version }}
+              | &ngsp;
+              span.badge.badge-secondary(*ngif='method.deprecated') deprecated {{ method.deprecated.version }}
+            td.content-cell
+              p.signature
+                code {{methodSignature(method)}}
+                | &ngsp;
+                small.text-muted(title='Return type') => {{ method.returnType }}
+              p(*ngif='method.deprecated') {{ method.deprecated.description }}
+              p.description {{ method.description }}

@@ -8,6 +8,7 @@ import { DemoAlertComponent } from './alert.component';
 
 // Examples
 import { DemoAlertBasic } from './examples/basic';
+import { NglDemoSharedModule } from '../shared/shared.module';
 
 const routes: Routes = [
   { path: '', component: DemoAlertComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
+    NglDemoSharedModule,
     RouterModule.forChild(routes),
     NglModule,
     NglDemoExampleModule,
